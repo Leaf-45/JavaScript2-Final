@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Everyday Games</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<div id="app">
+    <game-navbar @search-game="searchItem" @log-out="logOut" :user="user"></game-navbar>
+    <div class="container mt-3">
+        <div v-if="shoppingList">
+            <h3 class="text center mt-2">Shopping list review</h3>
+            <game-cart :games="cart" :removable="false"></game-cart>
+            <button class="btn btn-secondary m-2" onclick="location.href = 'cart.html'"
+            >Back To Cart &nbsp <i class="fa-solid fa-cart-shopping fa-xl"></i></button>
+            <button class="btn btn-primary" @click="shoppingList = false; shippingInformation = true">
+                Continue &nbsp <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+
+        <div v-if="shippingInformation">
+        <h3>Shipping Information</h3>
+            <form class="form-group mt-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="Address">Address</label>
+                            <input class="form-control" type="text" id="Address" v-model="address">
+                            <div class="text-danger" v-if="!addressIsValid && formValidation">The address cannot be empty</div>
+
+                            <label for="City">City</label>
+                            <input class="form-control" type="text" id="City" v-model="city">
+                            <div class="text-danger" v-if="!cityIsValid && formValidation">The city cannot be empty</div>
+
+                            <label for="State">State</label>
+                            <input class="form-control" type="text" id="State" v-model="state">
+                            <div class="text-danger" v-if="!stateIsValid && formValidation">The state cannot be empty</div>
+                        </div>
+                        <div class="col-sm">
+                            <label for="ZipCode">Zip Code</label>
+                            <input class="form-control" maxlength="5" type="text" id="ZipCode" v-model="zipCode">
+                            <div class="text-danger" v-if="!zipCodeIsValid && formValidation">The zip code must be five numbers</div>
+
+                            <label for="Country">Country</label>
+                            <input class="form-control" type="text" id="Country" v-model="country">
+                            <div class="text-danger" v-if="!countryIsValid && formValidation">The country cannot be empty</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-secondary m-2" @click="shoppingList = true; shippingInformation = false"
+            >Go Back &nbsp <i class="fa-solid fa-arrow-left"></i></button>
+            <button class="btn btn-primary m-2" @click="validateForm"
+            >Continue &nbsp <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <div v-if="paymentInformation">
+            <h3>Payment Information</h3>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="payment" id="debitCard" value="Debit Card" v-model="payment"
+                            >
+                    <label class="form-check-label" for="debitCard">
+                        Debit card
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="payment" id="creditCard" value="Credit Card" v-model="payment">
+                    <label class="form-check-label" for="creditCard">
+                        Credit Card
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="payment" id="paypal" value="Paypal" v-model="payment">
+                    <label class="form-check-label" for="paypal">
+                        Paypal
+                    </label>
+                </div>
+
+            <button class="btn btn-secondary m-2" @click="paymentInformation = false; shippingInformation = true;
+verified = false"
+            >Go Back &nbsp <i class="fa-solid fa-arrow-left"></i></button>
+
+            <button class="btn btn-primary m-2" @click="checkCheckBoxes"
+                    onclick="document.location.href = 'purchased.html'">Purchase Games &nbsp
+                <i class="fa-solid fa-credit-card"></i></button>
+            </div>
+
+    </div>
+</div>
+<footer class="mt-3 bg-dark text-bg-dark">
+    Designed by Alex Besta
+</footer>
+
+<!-- Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
+<!-- Firebase -->
+<script src="https://gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+<script src="JS/Firebase.js"></script>
+
+<!-- Vue Application -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="JS/Models/game.js"></script>
+<script src="JS/Models/user.js"></script>
+<script src="JS/app.js"></script>
+<script src="JS/Components/gameNavbar.js"></script>
+<script src="JS/Components/cart.js"></script>
+<script src="JS/Components/cartItem.js"></script>
+
+<script>
+    // start the app after all the other JS has been loaded
+    app.mount('#app');
+</script>
+</body>
+</html>

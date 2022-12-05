@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Everyday Games/Login</title>
+</head>
+<body>
+
+    <div id="app">
+
+        <game-navbar @search-game="searchItem" @log-out="logOut" :user="user"></game-navbar>
+        <div>
+            <div class="container">
+            <h4 class="mt-3">The benefits of logging in</h4>
+            <p>Logging in allows users to leave reviews on their favorite games!</p>
+            <div class="border border-secondary">
+                <p class="m-2">
+                    Already have an account? Then log into it here
+                </p>
+
+                <button class="btn btn-primary m-2" @click="loginDisplay = true" :disabled="loginDisplay">Sign in</button>
+                <button class="btn btn-secondary m-2" v-show="loginDisplay" @click="loginDisplay = false">Cancel</button>
+
+                <form class="form-group" v-show="loginDisplay" v-on:submit.prevent>
+
+                    <label for="LEmail" class="m-2">Email</label>
+                    <input type="Email" id="LEmail" class="form-control w-50 m-2" v-model="loginEmail">
+
+                    <label for="LPass" class="m-2">Password</label>
+                    <input type="password" id="LPass" class="form-control w-50 m-2" v-model="loginPassword">
+
+                    <input type="submit" value="Login" class="btn btn-success m-2"
+                           @click="loginDisplay = false; signIn()">
+                </form>
+            </div>
+
+            <div class="border border-secondary mt-3">
+                <p class="m-2">
+                    New to the Everyday Games? Then sign up to get started
+                </p>
+                <button class="btn btn-primary m-2" @click="signUpDisplay = true" :disabled="signUpDisplay">Sign up</button>
+                <button class="btn btn-secondary m-2" v-show="signUpDisplay" @click="signUpDisplay = false">Cancel</button>
+
+                <form class="form-group" v-show="signUpDisplay" v-on:submit.prevent>
+                    <label for="userName" class="m-2">User Name</label>
+                    <input type="text" id="userName" class="form-control w-50 m-2" v-model="username">
+
+                    <label for="SEmail" class="m-2">Email</label>
+                    <input type="Email" id="SEmail" class="form-control w-50 m-2" v-model="signUpEmail">
+
+                    <label for="SPass" class="m-2">Password</label>
+                    <input type="password" id="SPass" class="form-control w-50 m-2" v-model="signUpPassword">
+
+                    <input type="submit" value="Create Account" class="btn btn-success m-2"
+                    @click="signUpDisplay = false; signUp()">
+                </form>
+            </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="mt-3 bg-dark text-bg-dark">
+        Designed by Alex Besta
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+    <script src="JS/Firebase.js"></script>
+
+    <!--Vue application-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="JS/Models/game.js"></script>
+    <script src="JS/Models/user.js"></script>
+    <script src="JS/app.js"></script>
+    <script src="JS/Components/gameNavbar.js"></script>
+
+
+    <script>
+        // start the app after all the other JS has been loaded
+        app.mount('#app');
+    </script>
+</body>
+</html>

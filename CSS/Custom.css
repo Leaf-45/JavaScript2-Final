@@ -1,0 +1,19 @@
+.cutoff-text
+{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.fa-trash
+{
+    opacity: 0.8;
+}
+
+.fa-trash:hover
+{
+    color: red;
+    opacity: 1;
+    transition: 0.3s;
+}
