@@ -12,7 +12,7 @@
 
         <div v-if="selectedGame !== ''">
 
-        <game-description :game="selectedGame" @add-to-cart="addToCart"></game-description>
+        <game-description :game="selectedGame" @add-to-cart="addToCart" @remove-item="removeGame"></game-description>
 
         <game-review-shelf :game="selectedGame" @upload-review="uploadReview" :user="user !== null"></game-review-shelf>
 

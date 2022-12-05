@@ -100,8 +100,10 @@ app.component('GameReviewShelf',
                         </button>
                       </div>
                     </div>
+                    <div v-else>
+                        <h6 class="text-center mt-3">log in to leave a review!</h6>
                     </div>
-                    
-                  
+                    </div>
+                         
             `
     })

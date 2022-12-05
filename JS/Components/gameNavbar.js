@@ -42,7 +42,7 @@ app.component('GameNavbar',
 
             <ul class="navbar-nav">
                 <li class="">
-                    <input class="form-control" v-model="searchText" size="30" type="search" placeholder="Search for games" aria-label="Search">
+                    <input class="form-control" v-model="searchText" type="search" placeholder="Search for games" aria-label="Search">
                 </li>
                 <li class="nav-item">
                   <form action="gamesList.html">
