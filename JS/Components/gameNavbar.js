@@ -58,7 +58,10 @@ app.component('GameNavbar',
                 <li>
                     <a class="nav-link" href="index.html">Home</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="user !== null">
+                    <a @click="this.$emit('log-out')" href=""><i class="fa-solid fa-user fa-2xl"></i></a>
+                </li>
+                <li class="nav-item" v-else>
                   <a href="login.html"><i class="fa-solid fa-user fa-2xl"></i></a>
                 </li>
                 <li v-if="user == null">
@@ -68,7 +71,7 @@ app.component('GameNavbar',
                   <a class="nav-link" @click="this.$emit('log-out')" href="#">Logout</a>
                 </li>
                 <li class="nav-item">
-                  <a href="gamesList.html"><i class="fa-solid fa-gears fa-2xl"></i></a>
+                  <a @click="resetSearchItem" href="gamesList.html"><i class="fa-solid fa-gears fa-2xl"></i></a>
                 </li>
                 <li>
                     <a class="nav-link" @click="resetSearchItem" href="gamesList.html">Games</a>
