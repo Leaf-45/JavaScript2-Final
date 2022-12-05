@@ -29,7 +29,7 @@ const app = Vue.createApp({
 
 
             //User
-            user: Object,
+            user: new user(),
 
             //Login and signup information
             username: "",
@@ -55,8 +55,6 @@ const app = Vue.createApp({
             signUpDisplay: false,
             loginDisplay: false
         }
-
-
     },
 
     methods:
@@ -221,21 +219,19 @@ const app = Vue.createApp({
 
             })
             this.loading = false
-
-            this.selectedGame = this.getFromLocalStorage('selectedGame', '')
-
-            this.cart = this.getFromLocalStorage('cart', '')
-
-            this.searchText = this.getFromLocalStorage('searchText', '')
-
-            this.cartPurchased = this.getFromLocalStorage('cartPurchased', '')
-
-            this.addressInformation = this.getFromLocalStorage('addressInformation', '')
-
         })
+
+
+        this.selectedGame = this.getFromLocalStorage('selectedGame', '')
+
+        this.cart = this.getFromLocalStorage('cart', '')
+
+        this.searchText = this.getFromLocalStorage('searchText', '')
+
+        this.cartPurchased = this.getFromLocalStorage('cartPurchased', '')
+
+        this.addressInformation = this.getFromLocalStorage('addressInformation', '')
     },
-
-
 
     watch: {
         selectedGame:
@@ -284,9 +280,5 @@ const app = Vue.createApp({
                     localStorage.setItem('addressInformation', JSON.stringify(item))
                 }
             }
-
-
-
     }
-
 });
