@@ -224,13 +224,13 @@ const app = Vue.createApp({
 
         this.selectedGame = this.getFromLocalStorage('selectedGame', '')
 
-        this.cart = this.getFromLocalStorage('cart', '') ?? []
+        this.cart = this.getFromLocalStorage('cart', [])
 
         this.searchText = this.getFromLocalStorage('searchText', '')
 
-        this.cartPurchased = this.getFromLocalStorage('cartPurchased', '')
+        this.cartPurchased = this.getFromLocalStorage('cartPurchased', [])
 
-        this.addressInformation = this.getFromLocalStorage('addressInformation', '') ?? []
+        this.addressInformation = this.getFromLocalStorage('addressInformation', [])
     },
 
     watch: {
