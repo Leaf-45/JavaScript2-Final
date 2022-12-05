@@ -37,12 +37,12 @@ app.component('GameNavbar',
         <div class="container-fluid">
 
             <h2>
-                <a href="index.html" style="text-decoration: none; color: black">Everyday Games</a>
+                <a href="index.html" class="text-dark" style="text-decoration: none">Everyday Games</a>
             </h2>
 
             <ul class="navbar-nav">
                 <li class="">
-                    <input class="form-control" v-model="searchText" size="45" type="search" placeholder="Search for games" aria-label="Search">
+                    <input class="form-control" v-model="searchText" size="30" type="search" placeholder="Search for games" aria-label="Search">
                 </li>
                 <li class="nav-item">
                   <form action="gamesList.html">
