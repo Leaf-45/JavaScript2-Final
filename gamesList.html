@@ -11,9 +11,7 @@
     <div id="app">
         <game-navbar @search-game="searchItem" @log-out="logOut" :user="user"></game-navbar>
         <game-card-shelf :games="filterList" :loading="loading" :limit="12" @learn-more="gameDescription"></game-card-shelf>
-        <footer class="mt-3 bg-dark text-bg-dark">
-            Designed by Alex Besta
-        </footer>
+        <game-footer></game-footer>
     </div>
 
     <!-- Bootstrap -->
@@ -31,6 +29,7 @@
     <script src="JS/Components/gameNavbar.js"></script>
     <script src="JS/Components/gameCardShelf.js"></script>
     <script src="JS/Components/gameCard.js"></script>
+    <script src="JS/Components/footer.js"></script>
 
     <script>
         // start the app after all the other JS has been loaded

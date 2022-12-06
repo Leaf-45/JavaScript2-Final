@@ -34,8 +34,8 @@ app.component('GameDescription',
 
         template:
             `
-              <h3 class="text-center">{{game.title}} Description</h3>
-              <div class="d-flex">
+              <h3 class="text-center mt-2">{{game.title}} Description</h3>
+              <div class="d-flex container">
                 <img :src="game.img" alt="">
                 <div class="d-flex flex-column">
                   <p class="m-2">{{game.description}}</p>
