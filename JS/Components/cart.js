@@ -26,7 +26,7 @@ app.component('GameCart', {
             totalCost: function ()
             {
                 let cost = 0
-                this.games.forEach(game => cost += (game.cost + 0.01))
+                this.games.forEach(game => cost += game.cost)
                 return cost
             }
         },
