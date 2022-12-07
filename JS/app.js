@@ -53,7 +53,8 @@ const app = Vue.createApp({
 
             //When to display forms on Login.html
             signUpDisplay: false,
-            loginDisplay: false
+            loginDisplay: false,
+
         }
     },
 
@@ -93,7 +94,9 @@ const app = Vue.createApp({
                 firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword).then(() =>
                 {
                     window.location = 'index.html';
-                })
+                }).catch(function(error) {
+
+                });
             },
 
             signUp: function ()
@@ -103,7 +106,11 @@ const app = Vue.createApp({
                     return result.user.updateProfile({
                         displayName: this.username
                     })
-                }).then(() => {window.location = 'index.html';})
+                })
+                    .then(() => {window.location = 'index.html';})
+                    .catch(function(error) {
+
+                    });
 
             },
 

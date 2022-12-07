@@ -33,7 +33,7 @@ app.component('GameCart', {
 
     template:
         `
-          <table class="table container">
+          <table class="table container table-bordered">
           <thead>
           <tr>
             <th scope="col" class="m-2">Title</th>
@@ -43,21 +43,18 @@ app.component('GameCart', {
           </thead>
           <tbody>
             <game-cart-item v-for="game in games" :removable="removable" :game="game" @remove-item="removeGame"></game-cart-item>
-            <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            </tr>
-            <tr>
+            <tr class="mt-5">
               <th>Total Cost:</th>
               <th>{{'$' + totalCost.toFixed(2)}}</th>
-              <th v-if="removable">
-                <form action="payment.html">
-                  <input type="submit" class="btn btn-success" value="Purchase">
-                </form>
-              </th>
+              <th v-if="removable"></th>
             </tr>
           </tbody>
           </table>
+          
+          <div v-if="removable">
+          <form action="payment.html" class="d-flex justify-content-center">
+            <input type="submit" class="btn btn-success" value="Purchase">
+          </form>
+          </div>
         `
 })
