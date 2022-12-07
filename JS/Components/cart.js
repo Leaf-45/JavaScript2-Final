@@ -44,6 +44,11 @@ app.component('GameCart', {
           <tbody>
             <game-cart-item v-for="game in games" :removable="removable" :game="game" @remove-item="removeGame"></game-cart-item>
             <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            </tr>
+            <tr>
               <th>Total Cost:</th>
               <th>{{'$' + totalCost.toFixed(2)}}</th>
               <th v-if="removable">
