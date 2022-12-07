@@ -55,6 +55,10 @@ const app = Vue.createApp({
             signUpDisplay: false,
             loginDisplay: false,
 
+            //Displays login errors for the user
+            loginErrorText: "",
+            signUpErrorText: "",
+            userNameField: false
         }
     },
 
@@ -91,26 +95,35 @@ const app = Vue.createApp({
 
             signIn: function ()
             {
-                firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword).then(() =>
+                firebase.auth().signInWithEmailAndPassword(this.loginEmail, this.loginPassword)
+                    .then(() =>
                 {
                     window.location = 'index.html';
-                }).catch(function(error) {
-
+                }).catch((error) => {
+                    this.loginErrorText = 'Sign in error: ' + error.message
+                    this.loginDisplay = true
                 });
             },
 
             signUp: function ()
             {
-                firebase.auth().createUserWithEmailAndPassword(this.signUpEmail, this.signUpPassword).then((result) =>{
+                if (this.userNameIsValid)
+                {
+                    firebase.auth().createUserWithEmailAndPassword(this.signUpEmail, this.signUpPassword).then((result) =>{
 
-                    return result.user.updateProfile({
-                        displayName: this.username
+                        return result.user.updateProfile({
+                            displayName: this.username
+                        })
                     })
-                })
-                    .then(() => {window.location = 'index.html';})
-                    .catch(function(error) {
-
-                    });
+                        .then(() =>
+                        {
+                            window.location = 'index.html';
+                        })
+                        .catch((error) => {
+                            this.signUpErrorText = 'Account creation error: ' + error.message
+                        });
+                }
+                else this.userNameField = true
 
             },
 
@@ -166,6 +179,7 @@ const app = Vue.createApp({
         },
 
     computed: {
+        // Search bar functionality
         filterList: function(){
             return this.games.filter(game => {
                 let searched = game.title.toLowerCase();
@@ -173,6 +187,7 @@ const app = Vue.createApp({
             })
         },
 
+        //Address form validation
         addressIsValid: function ()
         {
             return this.address.length > 0
@@ -196,6 +211,12 @@ const app = Vue.createApp({
         countryIsValid: function ()
         {
             return this.country.length > 0
+        },
+
+        // login form validation
+        userNameIsValid: function ()
+        {
+            return this.username.length > 0
         }
     },
 

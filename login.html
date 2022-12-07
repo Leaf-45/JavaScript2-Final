@@ -33,7 +33,9 @@
 
                     <input type="submit" value="Login" class="btn btn-success m-2"
                            @click="loginDisplay = false; signIn()">
+
                 </form>
+                <div class="text-danger m-2">{{loginErrorText}}</div>
             </div>
 
             <div class="border border-secondary mt-3">
@@ -46,6 +48,7 @@
                 <form class="form-group" v-show="signUpDisplay" v-on:submit.prevent>
                     <label for="userName" class="m-2">User Name</label>
                     <input type="text" id="userName" class="form-control w-50 m-2" v-model="username">
+                    <div class="text-danger m-2" v-if="!userNameIsValid && userNameField">User name cannot be blank</div>
 
                     <label for="SEmail" class="m-2">Email</label>
                     <input type="Email" id="SEmail" class="form-control w-50 m-2" v-model="signUpEmail">
@@ -54,8 +57,9 @@
                     <input type="password" id="SPass" class="form-control w-50 m-2" v-model="signUpPassword">
 
                     <input type="submit" value="Create Account" class="btn btn-success m-2"
-                    @click="signUpDisplay = false; signUp()">
+                    @click="signUp()">
                 </form>
+                <div class="text-danger m-2">{{signUpErrorText}}</div>
             </div>
             </div>
         </div>
